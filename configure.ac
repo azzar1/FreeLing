@@ -89,6 +89,17 @@ AC_ARG_ENABLE([libfoma],
               ],
               [AM_CONDITIONAL([NO_LIBFOMA],[test 1 = 0])])
 
+AC_ARG_ENABLE([libsyntaxnet],
+              [AS_HELP_STRING([--disable-libsyntaxnet],[Compile without SyntaxNet dependent modules. Default is: Enabled.])],
+              [if test "$enableval" = no; then
+                 # define symbol for CPP
+                 AC_DEFINE(NO_LIBSYNTAXNET)
+               fi
+               # pass info to automake
+               AM_CONDITIONAL([NO_LIBSYNTAXNET],[test "$enableval" = no])
+              ],
+              [AM_CONDITIONAL([NO_LIBSYNTAXNET],[test 1 = 0])])
+
 AC_ARG_ENABLE([build-tests],
               [AS_HELP_STRING([--enable-build-tests],[Compile unittest programs. Default: Not compiled.])],
               [if test "$enableval" = yes; then
@@ -300,6 +311,7 @@ AC_CONFIG_FILES([Makefile
                  src/libfoma/Makefile
                  src/libtreeler/Makefile
                  src/libtreeler/main/Makefile
+                 src/libsyntaxnet/Makefile
                  src/main/Makefile
                  src/utilities/Makefile
                  src/tests/Makefile

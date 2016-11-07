@@ -9,4 +9,10 @@ else
   DO_FOMA = libfoma
 endif
 
-SUBDIRS = include libtreeler $(DO_FOMA) libfreeling main utilities $(DO_TESTS)
+if NO_LIBSYNTAXNET
+  DO_SYNTAXNET =
+else
+  DO_SYNTAXNET = libsyntaxnet
+endif
+
+SUBDIRS = include libtreeler $(DO_FOMA) libfreeling main utilities $(DO_SYNTAXNET) $(DO_TESTS)
